@@ -1,45 +1,72 @@
-# Predictive Modeling for Agriculture
+# 🌱 Predictive Modeling for Agriculture
 
-## Project Overview
+## Machine Learning-Based Crop Recommendation System
 
-This project uses machine learning to predict a suitable crop based on soil measurements.
+A machine learning project that analyzes soil measurements and recommends a suitable crop using a **Logistic Regression classification model**.
 
-## Features
+The project provides an interactive **Streamlit web application** where users can enter soil parameters such as Nitrogen (N), Phosphorus (P), Potassium (K), and soil pH. The application evaluates the soil data and generates a crop recommendation along with model confidence and feature-performance analysis.
 
-The model uses the following soil parameters:
+---
 
-- Nitrogen (N)
-- Phosphorous (P)
-- Potassium (K)
-- pH
+##  Project Overview
 
-## Technologies Used
+Agricultural productivity is strongly influenced by soil conditions. Selecting a suitable crop based on the characteristics of the soil can help farmers make better-informed decisions.
 
-- Python
-- Pandas
-- Scikit-learn
-- Logistic Regression
-- Streamlit
+This project explores how machine learning can be applied to soil measurements to classify suitable crop categories.
 
-## Dataset
+The project includes:
 
-The project uses the `soil_measures.csv` dataset containing soil measurements and crop labels.
+- Soil data analysis
+- Feature evaluation using F1-score
+- Logistic Regression classification
+- Interactive Streamlit interface
+- Crop recommendation based on the trained model
+- Candidate probability visualization
+- Feature predictive-performance visualization
 
-## Machine Learning
+---
 
-Logistic Regression is used to train a multi-class classification model and predict the most suitable crop based on the given soil parameters.
+##  Objectives
 
-## Web Application
+The main objectives of this project are:
 
-A Streamlit interface allows users to enter soil measurements and receive a crop prediction.
+- Analyze soil measurements relevant to crop selection.
+- Evaluate the predictive performance of individual soil features.
+- Build a machine learning classification model.
+- Develop an easy-to-use interface for entering soil measurements.
+- Provide a crop recommendation based on the trained model.
+- Present model results and feature performance visually.
 
-## Project Structure
+---
 
-```text
-Predictive Modeling for Agriculture/
-├── app.py
-├── notebook.ipynb
-├── soil_measures.csv
-├── farmer_in_a_field.jpg
-├── requirements.txt
-└── README.md
+##  Soil Parameters
+
+The application accepts four soil-related parameters:
+
+| Parameter | Description |
+|-----------|-------------|
+| **Nitrogen (N)** | Nitrogen level in the soil |
+| **Phosphorus (P)** | Phosphorus level in the soil |
+| **Potassium (K)** | Potassium level in the soil |
+| **pH** | Soil acidity/alkalinity level |
+
+Although all four parameters are collected by the application, the **currently deployed prediction model uses Potassium (K) as its prediction feature**.
+
+The other features are evaluated separately to compare their predictive performance.
+
+---
+
+##  Machine Learning Approach
+
+### Logistic Regression
+
+The project uses **Logistic Regression** for multi-class crop classification.
+
+The deployed prediction pipeline is trained using Potassium:
+
+```python
+X = crops[["K"]]
+y = crops["crop"]
+
+model = LogisticRegression(max_iter=1000)
+model.fit(X, y)
